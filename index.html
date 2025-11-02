@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Campus Lost & Found</h1>
+                <p class="subtitle">Report lost items or help return found items to their owners</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- report missing item -->
+            <div class="card form-section">
+                <h2>Report an Item</h2>
+
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="name">Item Name: </label>
+                        <input type="text" id="name" name="name" required placeholder="e.g., Backpack">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description: </label>
+                        <textarea id="description" name="description" required placeholder="Provide detailed description of the item..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location_found">Location: </label>
+                        <input type="text" id="location_found" name="location_found" required placeholder="e.g., A410">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date_found">Date: </label>
+                        <input type="date" id="date_found" name="date_found" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Type: </label>
+                        <select id="status" name="status" required>
+                            <option value="">Select type</option>
+                            <option value="lost">Lost - I'm looking for this item</option>
+                            <option value="found">Found - I found this item</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Upload Image (Optional)</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                    </div>
+
+                    <button type="submit">Submit Report</button>
+                </form>
+            </div>
+
+            <!-- items display -->
+            <div class="items-display">
+                <!-- lost items -->
+                <div class="card items-section">
+                    <h2>Lost Items</h2>
+                    <p class="section-description">Items people are looking for</p>
+                    
+                    <div class="search-bar">
+                        <input type="text" id="searchLost" placeholder="Search lost items...">
+                    </div>
+
+                    <div class="items-grid" id="lostItemsGrid">
+                        <!-- dere ibutang ang sample sa mga item sample: dili ni fuctional example ra run live server browser-->
+                        <div class="item-card" data-status="Lost">
+                            <h3>Blue Backpack</h3>
+                            <div class="item-image"></div>
+                            <p class="item-details"><strong>Description:</strong> Black iPhone 13 with cracked screen protector</p>
+                            <p class="item-details"><strong>Last seen:</strong> Cafeteria</p>
+                            <p class="item-details"><strong>Date:</strong> 2025-10-29</p>
+                            <span class="status-badge status-lost">LOST</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- found items -->
+                <div class="card items-section">
+                    <h2>Found Items</h2>
+                    <p class="section-description">Items discovered and waiting to be claimed</p>
+                    
+                    <div class="search-bar">
+                        <input type="text" id="searchFound" placeholder="Search found items...">
+                    </div>
+
+                    <div class="items-grid" id="foundItemsGrid">
+                        <!-- dere ibutang ang sample sa mga item sample: dili ni fuctional example ra run live server browser-->
+                        <div class="item-card" data-status="found">
+                            <h3>Blue Backpack</h3>
+                            <div class="item-image"></div>
+                            <p class="item-details"><strong>Description:</strong> Black iPhone 13 with cracked screen protector</p>
+                            <p class="item-details"><strong>Last seen:</strong> Cafeteria</p>
+                            <p class="item-details"><strong>Date:</strong> 2025-10-29</p>
+                            <span class="status-badge status-lost">LOST</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

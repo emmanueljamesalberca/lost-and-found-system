@@ -4,3 +4,13 @@ uploads/
 .DS_Store
 .vscode/
 .idea/
+
+# Backend ignores
+backend/.env
+backend/node_modules/
+backend/certs/
+
+# Backend ignores
+backend/.env
+backend/node_modules/
+backend/certs/

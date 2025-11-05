@@ -1,5 +1,6 @@
 // --- API base ---------------------------------------------------------------
 const API = 'http://localhost:4000/api';
+const API_HOST = API.replace(/\/api$/, '');
 
 // --- DOM refs (keep existing IDs & classes) --------------------------------
 const reportForm     = document.getElementById('reportForm');
@@ -34,11 +35,18 @@ function createItemCard(item) {
   if (item.image_url) {
     imgBox.textContent = '';
     const img = new Image();
-    img.src = item.image_url;
+
+    // --- normalize path and prefix host when needed ---
+    let imgUrl = String(item.image_url || "").replace(/\\/g, "/");
+    if (imgUrl.startsWith("uploads/")) imgUrl = "/" + imgUrl;
+    const src = imgUrl.startsWith("/uploads/") ? `${API_HOST}${imgUrl}` : imgUrl;
+    img.src = src;
+    
     img.style.width = '100%';
     img.style.height = '180px';
     img.style.objectFit = 'cover';
     img.style.borderRadius = '8px';
+    imgBox.classList.add('has-image');
     imgBox.appendChild(img);
   }
   card.appendChild(imgBox);
@@ -108,28 +116,24 @@ reportForm.addEventListener('submit', async (e) => {
   submitBtn.disabled = true;
 
   try {
+    // Build multipart payload from the form (includes the file name="image")
     const fd = new FormData(reportForm);
-    const payload = {
-      name:            (fd.get('name') || '').trim(),
-      description:     (fd.get('description') || '').trim(),
-      image_url:       null, // no upload yet; keep null to avoid huge base64 strings
-      location_found:  (fd.get('location_found') || '').trim(),
-      date_found:       fd.get('date_found'),
-      status:           fd.get('status') || 'lost'
-    };
+
+    // Normalize status in case the <select> text isn't literally "lost"/"found"
+    const rawStatus = (fd.get('status') || 'lost').toLowerCase();
+    fd.set('status', rawStatus.includes('found') ? 'found' : 'lost');
 
     const res = await fetch(`${API}/items`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: fd // IMPORTANT: don't set Content-Type manually
     });
 
     if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.error || 'Submit failed');
+      const text = await res.text();
+      throw new Error(`Submit failed (${res.status}). ${text}`);
     }
 
-    // UI reset + success message (keep your original UX)
+    // Success UI (unchanged)
     submitBtn.textContent = originalText;
     submitBtn.disabled = false;
     reportForm.reset();
@@ -146,9 +150,7 @@ reportForm.addEventListener('submit', async (e) => {
       setTimeout(() => successMsg.remove(), 300);
     }, 3000);
 
-    // reload lists
     await loadItems();
-
   } catch (err) {
     alert(err.message || 'Something went wrong');
     submitBtn.textContent = originalText;

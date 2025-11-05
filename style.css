@@ -223,6 +223,10 @@ button:disabled {
 .item-image::before {
     content: "No image";
 }
+.item-image.has-image::before {
+  content: "";
+}
+
 
 .status-badge {
     display: inline-block;

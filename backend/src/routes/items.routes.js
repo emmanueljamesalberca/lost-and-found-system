@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { upload } from "../middleware/upload.js";
 import { pool } from "../db.js";
 const router = Router();
 
@@ -15,34 +16,64 @@ router.get("/", async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
-router.post("/", async (req, res) => {
+// CREATE
+router.post("/", upload.single("image"), async (req, res) => {
   try {
-    const { name, description, image_url, location_found, date_found, status } = req.body;
+    const { name, description, location_found, date_found, status } = req.body;
+
     if (!name || !location_found || !date_found) {
       return res.status(400).json({ error: "name, location_found, and date_found are required" });
     }
+
+    // If a file was uploaded, build a URL served by your static /uploads route
+    let image_url = '';
+    if (req.file && req.file.filename) {
+      image_url = `/uploads/${req.file.filename}`;
+    } else if (req.body.image_url) {
+      image_url = String(req.body.image_url);
+    }
+    // normalize windows backslashes -> web slashes
+    image_url = image_url ? image_url.replace(/\\/g, '/') : '';
+
     const [result] = await pool.query(
       `INSERT INTO items (name, description, image_url, location_found, date_found, status)
        VALUES (?, ?, ?, ?, ?, ?)`,
-      [name, description ?? null, image_url ?? null, location_found, date_found, status ?? "lost"]
+      [name, description ?? null, image_url, location_found, date_found, status ?? "lost"]
     );
+
     const [rows] = await pool.query("SELECT * FROM items WHERE item_id = ?", [result.insertId]);
     res.status(201).json(rows[0]);
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
-router.put("/:id", async (req, res) => {
+// UPDATE
+router.put("/:id", upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, image_url, location_found, date_found, status } = req.body;
+    const { name, description, location_found, date_found, status } = req.body;
+
+    const image_url = req.file
+      ? `/uploads/${req.file.filename}`
+      : req.body.image_url || null;
+
     const [result] = await pool.query(
-      `UPDATE items SET name=?, description=?, image_url=?, location_found=?, date_found=?, status=? WHERE item_id=?`,
-      [name, description ?? null, image_url ?? null, location_found, date_found, status, id]
+      `UPDATE items
+       SET name=?, description=?, image_url=?, location_found=?, date_found=?, status=?
+       WHERE item_id=?`,
+      [name, description ?? null, image_url, location_found, date_found, status, id]
     );
-    if (result.affectedRows === 0) return res.status(404).json({ error: "Item not found" });
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
     const [rows] = await pool.query("SELECT * FROM items WHERE item_id = ?", [id]);
     res.json(rows[0]);
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 router.patch("/:id/status", async (req, res) => {

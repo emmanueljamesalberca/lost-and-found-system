@@ -14,3 +14,10 @@ backend/certs/
 backend/.env
 backend/node_modules/
 backend/certs/
+
+# uploads (binary user files)
+backend/uploads/
+
+# uploads (binary user files)
+backend/uploads/*
+!backend/uploads/.gitkeep

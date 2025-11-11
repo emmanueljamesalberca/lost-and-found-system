@@ -1,11 +1,13 @@
-# 🏫 Smart Campus Lost & Found System
+## Smart Campus Lost & Found System
 
-A containerized full-stack web application that digitalizes campus lost-and-found management. Built for the CS121 Capstone Project (aligned with UN SDG #11 & #16), this system enables users to report, search, and track lost or found items efficiently through a simple web interface.
+A containerized full-stack web app, that digitalizes a campus' lost and found management. Built for the CS121 Capstone Project (aligning with UN's SDG 11 and 16), this system enables users to report, search, and track either lost or found items efficiently through a simple comprehensive web interface
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-⚙️ Tech Stack Overview
+## Demo 
+https://github.com/user-attachments/assets/577d0c35-f1ce-46a0-b445-1954ceb294bc
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🧩 System Architecture
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## System Architecture
+<img width="1265" height="712" alt="image" src="https://github.com/user-attachments/assets/1d9d201d-b7ac-4056-84ac-08d880c907de" />
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🐳 Quick Start (Dockerized Setup)
@@ -24,9 +26,6 @@ cp .env.example .env
 docker compose up -d
 
 4️. Access the System
-
-🌐 App: http://localhost:8080
-🧠 API Health Check: http://localhost:8080/api/health
 
 5️.Stop Containers
 docker compose down
@@ -58,22 +57,15 @@ System Lost and Found/
 └── README.md
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🧠 Key Features
-
-📋 Report Lost or Found ItemsSubmit forms with item details and optional image uploads.
-
-🔍 Search & Filter ItemsReal-time search on both lost and found sections.
-
-🖼️ Image Upload & PreviewLocal preview before submission using FileReader().
-
-🔄 Status Management Mark items as found or returned directly from the interface.
-
-💾 Persistent StorageMySQL data and uploads persist even when containers are stopped.
-
-⚡ One-Command DeploymentEntire system deployable with Docker Compose in seconds.
+# Key Features
+- Report Lost or Found ItemsSubmit forms with item details and optional image uploads.
+- Search & Filter ItemsReal-time search on both lost and found sections.
+- Image Upload & PreviewLocal preview before submission using FileReader().
+- Status Management Mark items as found or returned directly from the interface.
+- Persistent StorageMySQL data and uploads persist even when containers are stopped.
+- One-Command DeploymentEntire system deployable with Docker Compose in seconds.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🧰 Core API Endpoints
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🧱 Backend Design Notes

@@ -10,25 +10,25 @@ A containerized full-stack web application that digitalizes campus lost-and-foun
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🐳 Quick Start (Dockerized Setup)
 
-1️⃣ Clone Repository
+1. Clone Repository
 
 git clone https://github.com/emmanueljamesalberca/lost-and-found-system.git
 cd lost-and-found-system
 
-2️⃣ Environment Setup
+2. Environment Setup
 
 cp .env.example .env
 
-3️⃣ Run All Services
+3️. Run All Services
 
 docker compose up -d
 
-4️⃣ Access the System
+4️. Access the System
 
 🌐 App: http://localhost:8080
 🧠 API Health Check: http://localhost:8080/api/health
 
-5️⃣ Stop Containers
+5️.Stop Containers
 docker compose down
 or
 run-lostfound.bat  # start & open browser

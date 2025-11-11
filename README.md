@@ -43,24 +43,41 @@ stop-lostfound.bat # stop containers
 ## Project Structure
 
 System Lost and Found/
+
 ├── backend/ 
 
 │   ├── src/
+
 │   │   ├── server.js
+
 │   │   ├── routes/items.routes.js
+
 │   │   └── middleware/upload.js
+
 │   ├── db.js
+
 │   ├── Dockerfile
+
 │   ├── package.json / package-lock.json
+
 │   └── uploads/
+
 ├── web/
+
 │   ├── Dockerfile
+
 │   └── nginx.conf
+
 ├── index.html / style.css / script.js
+
 ├── LOSTFOUND.sql
+
 ├── docker-compose.yml
+
 ├── run-lostfound.bat / stop-lostfound.bat
+
 ├── .env.example / .gitignore / .dockerignore
+
 └── README.md
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,12 @@
 
 ### A containerized full-stack web app, that digitalizes a campus' lost and found management. Built for the CS121 Capstone Project (aligning with UN's SDG 11 and 16), this system enables users to report, search, and track either lost or found items efficiently through a simple comprehensive web interface
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Sustainable Development Goals (SDG)
+This project aligns with:
+
+### SDG 11 – Sustainable Cities & Communities: Promotes safer, organized, and tech-enabled campus spaces.
+### SDG 16 – Peace, Justice & Strong Institutions: Builds transparent systems for accountability and lost-item recovery.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Demo 
 https://github.com/user-attachments/assets/577d0c35-f1ce-46a0-b445-1954ceb294bc
 
@@ -67,18 +73,11 @@ System Lost and Found/
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🧱 Backend Design Notes
+## Backend Design Notes
 
 Database Connection: uses MySQL2 with async connection pooling (db.js).
 File Uploads: managed by Multer (upload.js) with validation and unique file naming.
 Middleware: CORS, JSON parsing, request logging (Morgan).
 Error Handling: consistent 4xx/5xx responses with JSON error payloads.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🌍 Sustainable Development Goals (SDG)
-This project aligns with:
-
-SDG 11 – Sustainable Cities & Communities: Promotes safer, organized, and tech-enabled campus spaces.
-SDG 16 – Peace, Justice & Strong Institutions: Builds transparent systems for accountability and lost-item recovery.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

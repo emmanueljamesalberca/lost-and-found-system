@@ -94,8 +94,11 @@ System Lost and Found/
 ## Backend Design Notes
 
 Database Connection: uses MySQL2 with async connection pooling (db.js).
+
 File Uploads: managed by Multer (upload.js) with validation and unique file naming.
+
 Middleware: CORS, JSON parsing, request logging (Morgan).
+
 Error Handling: consistent 4xx/5xx responses with JSON error payloads.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

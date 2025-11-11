@@ -1,6 +1,6 @@
 ## Smart Campus Lost & Found System
 
-A containerized full-stack web app, that digitalizes a campus' lost and found management. Built for the CS121 Capstone Project (aligning with UN's SDG 11 and 16), this system enables users to report, search, and track either lost or found items efficiently through a simple comprehensive web interface
+### A containerized full-stack web app, that digitalizes a campus' lost and found management. Built for the CS121 Capstone Project (aligning with UN's SDG 11 and 16), this system enables users to report, search, and track either lost or found items efficiently through a simple comprehensive web interface
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Demo 
 https://github.com/user-attachments/assets/577d0c35-f1ce-46a0-b445-1954ceb294bc

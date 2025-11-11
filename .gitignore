@@ -1,23 +1,19 @@
+# --- Root ignores ---
 .env
 node_modules/
-uploads/
 .DS_Store
 .vscode/
 .idea/
 
-# Backend ignores
+# If you also have a **top-level** uploads folder, ignore it
+# (anchored so it won't match backend/uploads)
+#/uploads/
+
+# --- Backend ignores ---
 backend/.env
 backend/node_modules/
 backend/certs/
 
-# Backend ignores
-backend/.env
-backend/node_modules/
-backend/certs/
-
-# uploads (binary user files)
-backend/uploads/
-
-# uploads (binary user files)
+# --- Keep backend/uploads tracked (empty except .gitkeep) ---
 backend/uploads/*
 !backend/uploads/.gitkeep

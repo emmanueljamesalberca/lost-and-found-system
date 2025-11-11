@@ -285,3 +285,20 @@ button:disabled {
         grid-template-columns: 1fr;
     }
 }
+.status-claimed {
+  background: #6b7280;   /* muted gray */
+  color: #fff;
+}
+
+
+.modebar{position:fixed;top:14px;right:16px;display:flex;gap:8px;align-items:center;z-index:1000}
+.chip{padding:6px 10px;border-radius:999px;font-size:.85rem}
+.chip-student{background:#e5e7eb;color:#374151}
+.chip-admin{background:#dcfce7;color:#065f46}
+.btn-small{padding:6px 10px;border-radius:8px;border:1px solid #1e3a8a;background:#1e3a8a;color:#fff;cursor:pointer}
+.btn-outline{background:transparent;color:#1e3a8a;border:1px solid #1e3a8a}
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35)}
+.modal.hidden{display:none}
+.modal-card{background:#fff;padding:20px;width:320px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.field{display:flex;flex-direction:column;gap:4px;margin:10px 0}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}

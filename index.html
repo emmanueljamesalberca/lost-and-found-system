@@ -58,6 +58,17 @@
                     <button type="submit">Submit Report</button>
                 </form>
             </div>
+            <!-- claimed items (admin only) -->
+            <div class="card items-section" id="claimedSection" style="display:none">
+                <h2>Claimed Items (Admin)</h2>
+                <p class="section-description">Items marked as returned/claimed</p>
+                    
+                <div class="search-bar">
+                    <input type="text" id="searchClaimed" placeholder="Search claimed items...">
+                </div>
+                
+                <div class="items-grid" id="claimedItemsGrid"></div>
+            </div>
 
             <!-- items display -->
             <div class="items-display">
@@ -106,6 +117,57 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Admin mode chip + actions (fixed top-right) -->
+    <div id="modeBar" class="modebar">
+        <span id="modeChip" class="chip chip-student">Student mode</span>
+        <button id="loginBtn" class="btn-small">Admin login</button>
+        <button id="logoutBtn" class="btn-small" style="display:none">Exit admin</button>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="modal hidden" aria-hidden="true">
+        <div class="modal-card">
+        <h3 class="modal-title">Admin login</h3>
+        <form id="adminLoginForm">
+            <label class="field">
+            <span>Username</span>
+            <input id="adminUser" type="text" autocomplete="username" required />
+            </label>
+            <label class="field">
+            <span>Password</span>
+            <input id="adminPass" type="password" autocomplete="current-password" required />
+            </label>
+            <div class="modal-actions">
+            <button type="button" id="cancelLogin" class="btn-outline">Cancel</button>
+            <button type="submit" class="btn-primary">Log in</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <!-- Claim Item Modal (Admin) -->
+    <div id="claimModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+        <h3 class="modal-title">Claim item</h3>
+        <form id="claimForm">
+        <label class="field">
+            <span>Claimant full name</span>
+            <input id="claimantName" type="text" required />
+        </label>
+        <label class="field">
+            <span>Remarks (optional)</span>
+            <input id="claimNote" type="text" placeholder="e.g., Student ID shown, receipt verified" />
+        </label>
+        <label class="field" style="flex-direction:row; align-items:center; gap:10px">
+            <input id="claimConfirm" type="checkbox" />
+            <span>I confirm the claimant presented valid proof.</span>
+        </label>
+        <div class="modal-actions">
+            <button type="button" id="cancelClaim" class="btn-outline">Cancel</button>
+            <button type="submit" id="confirmClaimBtn" class="btn-primary" disabled>Confirm claim</button>
+        </div>
+        </form>
+    </div>
     </div>
 
     <script src="script.js"></script>

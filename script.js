@@ -1,6 +1,9 @@
-// --- API base ---------------------------------------------------------------
-const API = 'http://localhost:4000/api';
-const API_HOST = API.replace(/\/api$/, '');
+// When running in Docker (served by Nginx on :8080) we can hit /api directly.
+// In local-dev (file server / VS Code Live Server), point to the Node port.
+const API = (location.port === '8080' || location.hostname !== 'localhost')
+  ? '/api'
+  : 'http://localhost:4000/api';
+const API_HOST = window.location.origin; // keep if you use it for image URLs
 
 // --- Admin auth (modal-based) ---
 const AUTH_KEY = 'lf_auth';
@@ -404,15 +407,6 @@ imageInput.addEventListener('change', (e) => {
 function yyyyMmDd(d) {
   const tz = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
   return tz.toISOString().slice(0, 10); // YYYY-MM-DD
-}
-
-function setDateLimits() {
-  const dateInput = document.getElementById('date_found');
-  if (!dateInput) return;
-  const today = new Date(); today.setHours(0,0,0,0);
-  const lastYear = new Date(today); lastYear.setDate(today.getDate() - 365);
-  dateInput.max = yyyyMmDd(today);
-  dateInput.min = yyyyMmDd(lastYear);
 }
 
 // Initial load

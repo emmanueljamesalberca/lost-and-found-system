@@ -1,0 +1,50 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: lf_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: lostfound
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: app_pass123
+    ports: ["3307:3306"]
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./LOSTFOUND.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+
+  api:
+    build:
+      context: ./backend         # <— was "."
+      dockerfile: Dockerfile     # <— now relative to that context
+    container_name: lf_api
+    restart: unless-stopped
+    environment:
+      PORT: 4000
+      DB_HOST: db
+      DB_USER: ${DB_USER:-appuser}
+      DB_PASSWORD: ${DB_PASSWORD:-app_pass123}
+      DB_DATABASE: ${DB_DATABASE:-lostfound}
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASS: ${ADMIN_PASS:-2025MMCMsecure}   # <— updated default password
+    depends_on:
+      - db
+    volumes:
+      - uploads_data:/app/uploads   # <— path changes (see #2)
+    ports: ["4000:4000"]
+    healthcheck:
+      test: ["CMD","wget","-qO-","http://localhost:4000/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    container_name: lf_web
+    depends_on: [api]
+    ports: ["8080:80"]
+
+volumes:
+  mysql_data:
+  uploads_data:

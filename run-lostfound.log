@@ -1,0 +1,47 @@
+C:\Program Files\Docker\Docker\resources\bin\docker
+C:\Program Files\Docker\Docker\resources\bin\docker.exe
+Client:
+ Version:           28.5.1
+ API version:       1.51
+ Go version:        go1.24.8
+ Git commit:        e180ab8
+ Built:             Wed Oct  8 12:19:16 2025
+ OS/Arch:           windows/amd64
+ Context:           desktop-linux
+
+Server: Docker Desktop 4.50.0 (209931)
+ Engine:
+  Version:          28.5.1
+  API version:      1.51 (minimum version 1.24)
+  Go version:       go1.24.8
+  Git commit:       f8215cc
+  Built:            Wed Oct  8 12:17:24 2025
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.7.27
+  GitCommit:        05044ec0a9a75232cad458027ca83437aae3f4da
+ runc:
+  Version:          1.2.5
+  GitCommit:        v1.2.5-0-g59923ef
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+ Network systemlostandfound_default  Creating
+ Network systemlostandfound_default  Created
+ Container lf_db  Creating
+ Container lf_db  Created
+ Container lf_api  Creating
+ Container lf_api  Created
+ Container lf_web  Creating
+ Container lf_web  Created
+ Container lf_db  Starting
+ Container lf_db  Started
+ Container lf_api  Starting
+ Container lf_api  Started
+ Container lf_web  Starting
+ Container lf_web  Started
+NAME      IMAGE                    COMMAND                  SERVICE   CREATED         STATUS                                     PORTS
+lf_api    systemlostandfound-api   "docker-entrypoint.s…"   api       2 seconds ago   Up Less than a second (health: starting)   0.0.0.0:4000->4000/tcp, [::]:4000->4000/tcp
+lf_db     mysql:8.0                "docker-entrypoint.s…"   db        2 seconds ago   Up 1 second                                0.0.0.0:3307->3306/tcp, [::]:3307->3306/tcp
+lf_web    systemlostandfound-web   "/docker-entrypoint.…"   web       2 seconds ago   Up Less than a second                      0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
